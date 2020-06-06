@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Doktermana</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
+    <style>
+        .alert { color: red; }
+        .notice { color: blue; }
+        .success { color: green; }
+    </style>
+  </head>
+
+  <body>
+    <%= render "layouts/navigation" %>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash alert alert-info <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky" style="position:sticky;">
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/hospitals">Hospitals</a>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/employments">Doctor Employments</a>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/doctor_shifts">Doctor Shifts</a>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/scheduled_appointments">Schedule</a>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/users?type=Doctor">Doctors</a>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/users?type=Patient">Patients</a>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="/users">Users</a>
+            </nav>
+          </div>
+        </nav>
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

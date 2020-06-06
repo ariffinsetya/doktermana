@@ -1,0 +1,17 @@
+<p>
+  <strong>Schedule:</strong>
+  <%= @scheduled_appointment.schedule_id %>
+</p>
+
+<p>
+  <strong>Doctor:</strong>
+  <%= @scheduled_appointment.doctor_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @scheduled_appointment.patient_id %>
+</p>
+
+<%= link_to 'Edit', edit_scheduled_appointment_path(@scheduled_appointment) %> |
+<%= link_to 'Back', scheduled_appointments_path %>

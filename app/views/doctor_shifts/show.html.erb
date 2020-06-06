@@ -1,0 +1,27 @@
+<p>
+  <strong>Doctor:</strong>
+  <%= @doctor_shift.doctor_id %>
+</p>
+
+<p>
+  <strong>Start hour:</strong>
+  <%= @doctor_shift.start_hour %>
+</p>
+
+<p>
+  <strong>Start min:</strong>
+  <%= @doctor_shift.start_min %>
+</p>
+
+<p>
+  <strong>End hour:</strong>
+  <%= @doctor_shift.end_hour %>
+</p>
+
+<p>
+  <strong>End min:</strong>
+  <%= @doctor_shift.end_min %>
+</p>
+
+<%= link_to 'Edit', edit_doctor_shift_path(@doctor_shift) %> |
+<%= link_to 'Back', doctor_shifts_path %>

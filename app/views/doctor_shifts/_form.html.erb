@@ -1,0 +1,42 @@
+<%= form_with(model: doctor_shift, local: true) do |form| %>
+  <% if doctor_shift.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(doctor_shift.errors.count, "error") %> prohibited this doctor_shift from being saved:</h2>
+
+      <ul>
+        <% doctor_shift.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :doctor_id %>
+    <%= form.number_field :doctor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_hour %>
+    <%= form.number_field :start_hour %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_min %>
+    <%= form.number_field :start_min %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_hour %>
+    <%= form.number_field :end_hour %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_min %>
+    <%= form.number_field :end_min %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

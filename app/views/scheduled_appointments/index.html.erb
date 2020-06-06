@@ -1,0 +1,29 @@
+<h1>Scheduled Appointments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Doctor</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scheduled_appointments.each do |scheduled_appointment| %>
+      <tr>
+        <td><%= scheduled_appointment.schedule_id %></td>
+        <td><%= scheduled_appointment.doctor_id %></td>
+        <td><%= scheduled_appointment.patient_id %></td>
+        <td><%= link_to 'Show', scheduled_appointment %></td>
+        <td><%= link_to 'Edit', edit_scheduled_appointment_path(scheduled_appointment) %></td>
+        <td><%= link_to 'Destroy', scheduled_appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scheduled Appointment', new_scheduled_appointment_path %>

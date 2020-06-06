@@ -1,0 +1,2 @@
+module ScheduledAppointmentsHelper
+end
