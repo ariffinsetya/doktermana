@@ -1,11 +1,11 @@
 <h1>Scheduled Appointments</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Schedule</th>
-      <th>Doctor</th>
-      <th>User</th>
+      <th scope="colspan">Schedule</th>
+      <th scope="colspan">Doctor</th>
+      <th scope="colspan">Patient</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,9 +13,9 @@
   <tbody>
     <% @scheduled_appointments.each do |scheduled_appointment| %>
       <tr>
-        <td><%= scheduled_appointment.schedule_id %></td>
-        <td><%= scheduled_appointment.doctor_id %></td>
-        <td><%= scheduled_appointment.patient_id %></td>
+        <td><%= scheduled_appointment.schedule.start_time.strftime('%D %T') %> - <%= scheduled_appointment.schedule.end_time.strftime('%D %T') %></td>
+        <td><%= scheduled_appointment.schedule.doctor.name %></td>
+        <td><%= scheduled_appointment.patient.name %></td>
         <td><%= link_to 'Show', scheduled_appointment %></td>
         <td><%= link_to 'Edit', edit_scheduled_appointment_path(scheduled_appointment) %></td>
         <td><%= link_to 'Destroy', scheduled_appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
