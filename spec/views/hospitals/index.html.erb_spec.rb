@@ -1,25 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe "hospitals/index", type: :view do
+  let!(:hospitals) { create_list :hospital, 3 }
   before(:each) do
-    assign(:hospitals, [
-      Hospital.create!(
-        name: "Name",
-        address: "MyText",
-        phone: "Phone"
-      ),
-      Hospital.create!(
-        name: "Name",
-        address: "MyText",
-        phone: "Phone"
-      )
-    ])
+    assign(:hospitals, hospitals)
   end
 
   it "renders a list of hospitals" do
     render
-    assert_select "tr>td", text: "Name".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
-    assert_select "tr>td", text: "Phone".to_s, count: 2
+    hospitals.each do |ds|
+      expect(rendered).to have_text(ds.name)
+      expect(rendered).to have_text(ds.address)
+      expect(rendered).to have_text(ds.phone)
+    end
   end
 end
+

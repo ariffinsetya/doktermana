@@ -3,11 +3,14 @@ class BookingsController < ApplicationController
 
     def index
         doctor_shifts = DoctorShift.all
-        @schedules = doctor_shifts.map do |ds|
-            now = Schedule.from_shift(DateTime.now, ds)
-            tomorrow = Schedule.from_shift(1.days.after,ds)
-            [now,tomorrow]
-        end.flatten
+        schedules_today = doctor_shifts.map do |ds|
+            Schedule.from_shift(DateTime.now, ds)
+        end
+
+        schedules_tomorrow = doctor_shifts.map do |ds|
+            Schedule.from_shift(1.day.after, ds)
+        end
+        @schedules = schedules_today + schedules_tomorrow
     end
 
     def show

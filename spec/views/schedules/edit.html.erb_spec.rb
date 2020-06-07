@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "schedules/edit", type: :view do
+  let!(:schedule) { create :schedule }
   before(:each) do
-    @schedule = assign(:schedule, Schedule.create!(
-      doctor_id: 1
-    ))
+    assign(:schedule, schedule)
   end
 
-  it "renders the edit schedule form" do
+  it "renders edit schedule form" do
     render
-
-    assert_select "form[action=?][method=?]", schedule_path(@schedule), "post" do
-
-      assert_select "input[name=?]", "schedule[doctor_id]"
-    end
+    expect(rendered).to render_template 'schedules/_form'
   end
 end

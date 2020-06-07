@@ -1,24 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "scheduled_appointments/new", type: :view do
+  let!(:scheduled_appointment) { build :scheduled_appointment }
   before(:each) do
-    assign(:scheduled_appointment, ScheduledAppointment.new(
-      schedule_id: 1,
-      doctor_id: 1,
-      user_id: 1
-    ))
+    assign(:scheduled_appointment, scheduled_appointment)
   end
 
   it "renders new scheduled_appointment form" do
     render
-
-    assert_select "form[action=?][method=?]", scheduled_appointments_path, "post" do
-
-      assert_select "input[name=?]", "scheduled_appointment[schedule_id]"
-
-      assert_select "input[name=?]", "scheduled_appointment[doctor_id]"
-
-      assert_select "input[name=?]", "scheduled_appointment[user_id]"
-    end
+    expect(rendered).to render_template 'scheduled_appointments/_form'
   end
 end

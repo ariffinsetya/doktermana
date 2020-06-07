@@ -1,31 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "users/index", type: :view do
+  let!(:users) { create_list :user, 3 }
   before(:each) do
-    assign(:users, [
-      User.create!(
-        email: "Email",
-        name: "Name",
-        uid: "Uid",
-        avatar_url: "Avatar Url",
-        integer: ""
-      ),
-      User.create!(
-        email: "Email",
-        name: "Name",
-        uid: "Uid",
-        avatar_url: "Avatar Url",
-        integer: ""
-      )
-    ])
+    assign(:users, users)
   end
 
   it "renders a list of users" do
     render
-    assert_select "tr>td", text: "Email".to_s, count: 2
-    assert_select "tr>td", text: "Name".to_s, count: 2
-    assert_select "tr>td", text: "Uid".to_s, count: 2
-    assert_select "tr>td", text: "Avatar Url".to_s, count: 2
-    assert_select "tr>td", text: "".to_s, count: 2
+    users.each do |ds|
+      expect(rendered).to have_text(ds.name)
+      expect(rendered).to have_text(ds.email)
+      expect(rendered).to have_text(ds.type)
+    end
   end
 end

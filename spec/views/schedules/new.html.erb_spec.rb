@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "schedules/new", type: :view do
+  let!(:schedule) { build :schedule }
   before(:each) do
-    assign(:schedule, Schedule.new(
-      doctor_id: 1
-    ))
-  end
+    assign(:schedule, schedule)
+    end
 
   it "renders new schedule form" do
     render
-
-    assert_select "form[action=?][method=?]", schedules_path, "post" do
-
-      assert_select "input[name=?]", "schedule[doctor_id]"
-    end
+    expect(rendered).to render_template 'schedules/_form'
   end
 end

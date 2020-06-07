@@ -11,22 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.number_field :doctor_id %>
-  </div>
+  <% if schedule.doctor == nil %>
+    <div class="form-group">
+      <%= form.label :doctor_id %>
+      <% doctor_array = Doctor.all.map{|d| [d.name, d.id]} %>
+      <%= form.select :doctor_id, options_for_select(doctor_array), {}, {class: 'custom-select', style:'width:200px;display:inherit;'} %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= form.label :doctor_id %>
+      <div class="form-control"><%= schedule.doctor.name %></div>
+      <% form.hidden_field :doctor_id %>
+    </div>
+  <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :start_time %>
     <%= form.datetime_select :start_time %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :end_time %>
     <%= form.datetime_select :end_time %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btm-submit mb-2' %>
   </div>
 <% end %>
