@@ -8,6 +8,10 @@ class Users::SessionsController < Devise::SessionsController
         end
     end
 
+    def destroy
+        super
+    end
+
     def after_sign_out_path(_resource)
         new_user_session_path
     end

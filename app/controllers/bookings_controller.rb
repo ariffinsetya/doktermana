@@ -4,8 +4,14 @@ class BookingsController < ApplicationController
     def index
         doctor_shifts = DoctorShift.all
         @schedules = doctor_shifts.map do |ds|
-            Schedule.from_shift(DateTime.now, ds)
-        end
+            now = Schedule.from_shift(DateTime.now, ds)
+            tomorrow = Schedule.from_shift(1.days.after,ds)
+            [now,tomorrow]
+        end.flatten
+    end
+
+    def show
+        @bookings = ScheduledAppointment.where(patient_id: current_user.id)
     end
 
     def create
@@ -15,7 +21,7 @@ class BookingsController < ApplicationController
             if result[:error]
                 format.html { redirect_to '/bookings', alert: result[:error]}
             else
-                format.html { redirect_to "/scheduled_appointments/#{result[:schedule_appointment_id]}", notice: 'Your booking is success.' }
+                format.html { redirect_to "/bookings/mine", notice: 'Your booking is success.' }
             end
         end
     end

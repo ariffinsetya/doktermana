@@ -1,0 +1,5 @@
+<h2>Welcome To DokterMana</h2>
+<br/>
+<% if !user_signed_in? %>
+    <%= link_to 'Login Here', '/users/sign_in' %>
+<% end %>

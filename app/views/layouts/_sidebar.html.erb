@@ -22,7 +22,12 @@
             <a class="navbar-brand" href="/users">Users</a>
         </nav>
     <% end %>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/bookings">Bookings</a>
-    </nav>
+    <% if current_user && current_user.type == 'Patient' %>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/bookings">Bookings</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/bookings/mine">My Bookings</a>
+        </nav>
+    <% end %>
 </div>

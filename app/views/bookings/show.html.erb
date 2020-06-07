@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Hospital</th>
+      <th scope="col">Doctor</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.doctor.hospital.name %></td>
+        <td><%= booking.doctor.name %></td>
+        <td><%= booking.schedule.start_time.strftime('%D %T') %></td>
+        <td><%= booking.schedule.end_time.strftime('%D %T') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Admin
-Admin.create(name: 'admin', email: 'admin@hostpital.com', uid: '2137SADKJr0202r')
+Admin.create(name: 'admin', email: 'admin@hospital.com', uid: '2137SADKJr0202r', password: '12345678')
 
 # Doctors
-d1 = Doctor.create(name: 'dr Mike Andika', email: 'andikam@hostpital.com', uid: '2137421h21r0202r')
-d2 = Doctor.create(name: 'dr Ani Wilana', email: 'wilanaa@hostpital.com', uid: '21eh9as9s9s9s9')
-d3 = Doctor.create(name: 'dr Budi Hendarto', email: 'hendartob@hostpital.com', uid: 'sfaff88f8f82j33')
-d4 = Doctor.create(name: 'dr Solihin', email: 'solihin@hostpital.com', uid: 'snnisadEYFEFfdfd')
+d1 = Doctor.create(name: 'dr Mike Andika', email: 'andikam@hospital.com', uid: '2137421h21r0202r', password: '12345678')
+d2 = Doctor.create(name: 'dr Ani Wilana', email: 'wilanaa@hospital.com', uid: '21eh9as9s9s9s9', password: '12345678')
+d3 = Doctor.create(name: 'dr Budi Hendarto', email: 'hendartob@hospital.com', uid: 'sfaff88f8f82j33', password: '12345678')
+d4 = Doctor.create(name: 'dr Solihin', email: 'solihin@hospital.com', uid: 'snnisadEYFEFfdfd', password: '12345678')
 
 # Shift
 ds1 = DoctorShift.create(doctor_id: d1.id, start_hour: 9, start_min: 0, end_hour: 12, end_min: 30)
@@ -34,9 +34,9 @@ Employment.create(doctor: d3, hospital: h1)
 Employment.create(doctor: d4, hospital: h2)
 
 # Patients
-p1 = Patient.create(name: 'Antoni Manurung', email: 'manurung.antroni@hostmail.com', uid: '21312ubf88ASFDsw')
-p2 = Patient.create(name: 'Hendra Wiryawan', email: 'hendraw88@hostmail.com', uid: 'wand89d9s')
-p3 = Patient.create(name: 'David Cheng', email: 'dcheng@hostmail.com', uid: 'sadjhsa1qwd')
+p1 = Patient.create(name: 'Antoni Manurung', email: 'manurung.antroni@hostmail.com', uid: '21312ubf88ASFDsw', password: '12345678')
+p2 = Patient.create(name: 'Hendra Wiryawan', email: 'hendraw88@hostmail.com', uid: 'wand89d9s', password: '12345678')
+p3 = Patient.create(name: 'David Cheng', email: 'dcheng@hostmail.com', uid: 'sadjhsa1qwd', password: '12345678')
 
 # Scheduled Appointment
 s1 = Schedule.create(doctor: d1, start_time: DateTime.new(2020,1,1,9,0,0), end_time: DateTime.new(2020,1,1,12,30,0))
