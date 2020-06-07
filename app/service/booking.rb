@@ -19,6 +19,6 @@ class Booking
 
     def self.create_new_appointment(schedule, patient)
         sa = ScheduledAppointment.where(schedule: schedule, patient: patient, doctor: schedule.doctor).first_or_create
-        {'success': 'true', 'schedule_appointment_id': sa.id}
+        {'success': 'true', 'scheduled_appointment_id': sa.id}
     end
 end
