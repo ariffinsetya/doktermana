@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     user_type = params[:type] if params[:type]
     render :file => "#{Rails.root}/public/404.html",  :status => 404 if user_type && !['Patient','Doctor','Users'].include?(user_type) 
-    user_type = nil if user_type = 'Users'
+    user_type = nil if user_type == 'Users'
     @title = 'Users'
     if user_type
       @users = User.where(type: user_type)
@@ -36,8 +36,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    user_data = user_params
+    location = user_data['location']
+    user_data.delete('location')
 
+    @user = User.new(user_data)
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_path(@user, type: @user.class.name), notice: 'User was successfully created.' }
