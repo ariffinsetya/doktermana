@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        doctor_shifts = DoctorShift.all
+        doctor_shifts = DoctorShift.joins(doctor: :hospital)
         schedules_today = doctor_shifts.map do |ds|
             Schedule.from_shift(DateTime.now, ds)
         end
