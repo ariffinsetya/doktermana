@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Hospital, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'ActiveRecord Associations' do
+    it { should have_many(:employments) }
+    it { should have_many(:doctors).through(:employments) }
+  end
 end

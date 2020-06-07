@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Employment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'ActiveRecord Associations' do
+    it { should belong_to :doctor }
+    it { should belong_to :hospital }
+  end
 end

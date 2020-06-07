@@ -1,31 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "doctor_shifts/index", type: :view do
+  let!(:doctor_shifts) { create_list :doctor_shift, 2 }
   before(:each) do
-    assign(:doctor_shifts, [
-      DoctorShift.create!(
-        doctor_id: 2,
-        start_hour: 3,
-        start_min: 4,
-        end_hour: 5,
-        end_min: 6
-      ),
-      DoctorShift.create!(
-        doctor_id: 2,
-        start_hour: 3,
-        start_min: 4,
-        end_hour: 5,
-        end_min: 6
-      )
-    ])
+    assign(:doctor_shifts, doctor_shifts)
   end
 
   it "renders a list of doctor_shifts" do
     render
-    assert_select "tr>td", text: 2.to_s, count: 2
-    assert_select "tr>td", text: 3.to_s, count: 2
-    assert_select "tr>td", text: 4.to_s, count: 2
-    assert_select "tr>td", text: 5.to_s, count: 2
-    assert_select "tr>td", text: 6.to_s, count: 2
+    doctor_shifts.each do |ds|
+      expect(rendered).to have_text(ds.doctor.name)
+      expect(rendered).to have_text(ds.start_hour)
+      expect(rendered).to have_text(ds.start_min)
+      expect(rendered).to have_text(ds.end_hour)
+      expect(rendered).to have_text(ds.end_min)
+    end
   end
 end
