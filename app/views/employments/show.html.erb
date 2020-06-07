@@ -1,11 +1,11 @@
 <p>
   <strong>Doctor:</strong>
-  <%= @employment.doctor_id %>
+  <%= @employment.doctor.name %>
 </p>
 
 <p>
   <strong>Hospital:</strong>
-  <%= @employment.hospital_id %>
+  <%= @employment.hospital.name %>
 </p>
 
 <%= link_to 'Edit', edit_employment_path(@employment) %> |

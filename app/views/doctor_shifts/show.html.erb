@@ -1,26 +1,16 @@
 <p>
   <strong>Doctor:</strong>
-  <%= @doctor_shift.doctor_id %>
+  <%= @doctor_shift.doctor.name %>
 </p>
 
 <p>
-  <strong>Start hour:</strong>
-  <%= @doctor_shift.start_hour %>
+  <strong>Start Time:</strong>
+  <%= @doctor_shift.start_hour.to_s.rjust(2,'0') %>:<%= @doctor_shift.start_min.to_s.rjust(2,'0') %>
 </p>
 
 <p>
-  <strong>Start min:</strong>
-  <%= @doctor_shift.start_min %>
-</p>
-
-<p>
-  <strong>End hour:</strong>
-  <%= @doctor_shift.end_hour %>
-</p>
-
-<p>
-  <strong>End min:</strong>
-  <%= @doctor_shift.end_min %>
+  <strong>End Time:</strong>
+  <%= @doctor_shift.end_hour.to_s.rjust(2,'0') %>:<%= @doctor_shift.end_min.to_s.rjust(2,'0') %>
 </p>
 
 <%= link_to 'Edit', edit_doctor_shift_path(@doctor_shift) %> |

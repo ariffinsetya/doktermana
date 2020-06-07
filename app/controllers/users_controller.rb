@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     user_type = params[:type] if params[:type]
-    render :file => "#{Rails.root}/public/404.html",  :status => 404 if user_type && !['Patient','Doctor'].include?(user_type) 
+    render :file => "#{Rails.root}/public/404.html",  :status => 404 if user_type && !['Patient','Doctor','Users'].include?(user_type) 
+    user_type = nil if user_type = 'Users'
     @title = 'Users'
     if user_type
       @users = User.where(type: user_type)
@@ -52,8 +53,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_path(@user, type: @user.class.name), notice: 'User was successfully updated.' }
+      user_data = user_params
+      location = user_data['location']
+      user_data.delete('location')
+      if @user.update(user_data)
+        format.html { redirect_to user_path(@user, type: location), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -85,6 +89,6 @@ class UsersController < ApplicationController
       key = 'admin' if params['admin']
       key = 'patient' if params['patient']
       key = 'doctor' if params['doctor']
-      params.require(key).permit(:email, :name, :uid, :avatar_url, :type, :hospital)
+      params.require(key).permit(:email, :name, :uid, :avatar_url, :type, :hospital, :location)
     end
 end

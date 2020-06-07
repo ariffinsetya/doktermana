@@ -1,0 +1,28 @@
+<div class="sidebar-sticky" style="position:sticky;">
+    <% if current_user && current_user.type != 'Patient' %>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/hospitals">Hospitals</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/employments">Doctor Employments</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/doctor_shifts">Doctor Shifts</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/scheduled_appointments">Schedule</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/users?type=Doctor">Doctors</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/users?type=Patient">Patients</a>
+        </nav>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/users">Users</a>
+        </nav>
+    <% end %>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/bookings">Bookings</a>
+    </nav>
+</div>

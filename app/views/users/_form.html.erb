@@ -37,8 +37,11 @@
     <%= form.label :type %>
     <% selected_type = params[:type] == 'Users' ? user.type : params[:type] %>
     <%= form.select :type, options_for_select(['Admin','Patient','Doctor'], selected_type), {}, {class: 'custom-select', style: "width:100px;display:inherit;", disabled: params[:type]!='Users'} %>
-    <%= form.hidden_field :type %>
+    <%= form.hidden_field :type, disabled: params[:type] == 'Users' %>
   </div>
+
+
+  <%= form.hidden_field :location, value: params[:type] %>
 
   <div>
     <%= form.submit class:"btn btn-primary mb-2" %>

@@ -1,16 +1,16 @@
 <p>
   <strong>Schedule:</strong>
-  <%= @scheduled_appointment.schedule_id %>
+  <%= @scheduled_appointment.schedule.start_time.strftime('%D %T') %> - <%= @scheduled_appointment.schedule.end_time.strftime('%D %T') %>
 </p>
 
 <p>
   <strong>Doctor:</strong>
-  <%= @scheduled_appointment.doctor_id %>
+  <%= @scheduled_appointment.schedule.doctor.name %>
 </p>
 
 <p>
   <strong>Patient:</strong>
-  <%= @scheduled_appointment.patient_id %>
+  <%= @scheduled_appointment.patient.name %>
 </p>
 
 <%= link_to 'Edit', edit_scheduled_appointment_path(@scheduled_appointment) %> |

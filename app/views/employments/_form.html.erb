@@ -11,17 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.number_field :doctor_id %>
-  </div>
+  <% if employment.doctor == nil %>
+    <div class="form-group">
+      <%= form.label :doctor_id %>
+      <% doctor_array = Doctor.all.select{|d| d.hospital == nil}.map{|d| [d.name, d.id]} %>
+      <%= form.select :doctor_id, options_for_select(doctor_array), {}, {class: 'custom-select', style:'width:200px;display:inherit;'} %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= form.label :doctor_id %>
+      <div class="form-control"><%= employment.doctor.name %></div>
+      <% form.hidden_field :doctor_id %>
+    </div>
+  <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :hospital_id %>
-    <%= form.number_field :hospital_id %>
+    <% hospital_array = Hospital.all.map{|h| [h.name, h.id]} %>
+    <% hospital_selected = employment.hospital != nil ? employment.hospital.id : nil %>
+    <%= form.select :hospital_id, options_for_select(hospital_array, hospital_selected), {}, {class: 'custom-select', style:'width:200px;display:inherit;'} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary mb-2' %>
   </div>
 <% end %>

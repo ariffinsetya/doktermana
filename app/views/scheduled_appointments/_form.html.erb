@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :schedule_id %>
-    <%= form.number_field :schedule_id %>
-  </div>
+  <% if scheduled_appointment.schedule_id == nil %>
+    <div class="form-group">
+      <%= form.label :schedule_id %>
+      <% schedule_array = Schedule.all.map{|s| ["#{s.start_time.strftime('%D %T')} - #{s.end_time.strftime('%D %T')} (#{s.doctor.name})", s.id]} %>
+      <%= form.select :schedule_id, options_for_select(schedule_array), {}, {class: 'custom-select', style:'width:800px;display:inherit;'} %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= form.label :schedule_id %>
+      <div class="form-control"><%= "#{scheduled_appointment.schedule.start_time.strftime('%D %T')}-#{scheduled_appointment.schedule.end_time.strftime('%D %T')}" %></div>
+      <% form.hidden_field :schedule_id %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.number_field :doctor_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+  <div class="form-group">
+    <%= form.label :patient_id %>
+    <% patient_array = Patient.all.map{|d| [d.name, d.id]} %>
+    <%= form.select :patient_id, options_for_select(patient_array), {}, {class: 'custom-select', style:'width:200px;display:inherit;'} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary mb-2' %>
   </div>
 <% end %>

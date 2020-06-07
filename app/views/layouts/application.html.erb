@@ -24,29 +24,7 @@
     <div class="container-fluid">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky" style="position:sticky;">
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/hospitals">Hospitals</a>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/employments">Doctor Employments</a>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/doctor_shifts">Doctor Shifts</a>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/scheduled_appointments">Schedule</a>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/users?type=Doctor">Doctors</a>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/users?type=Patient">Patients</a>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="/users">Users</a>
-            </nav>
-          </div>
+          <%= render "layouts/sidebar" %>
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <%= yield %>

@@ -11,32 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.number_field :doctor_id %>
+  <% if doctor_shift.doctor == nil %>
+    <div class="form-group">
+      <%= form.label :doctor_id %>
+      <% doctor_array = Doctor.all.map{|d| [d.name, d.id]} %>
+      <%= form.select :doctor_id, options_for_select(doctor_array), {}, {class: 'custom-select', style:'width:200px;display:inherit;'} %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= form.label :doctor_id %>
+      <div class="form-control"><%= doctor_shift.doctor.name %></div>
+      <% form.hidden_field :doctor_id %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :start_hour %>
+      <%= form.number_field :start_hour, max: 23, min: 0, placeholder: 'Start Hour', class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :start_min %>
+      <%= form.number_field :start_min, max: 59, min: 0, placeholder: 'Start Minutes', class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :start_hour %>
-    <%= form.number_field :start_hour %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_min %>
-    <%= form.number_field :start_min %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_hour %>
-    <%= form.number_field :end_hour %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_min %>
-    <%= form.number_field :end_min %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :end_hour %>
+      <%= form.number_field :end_hour, max: 23, min: 0, placeholder: 'End Hour', class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :end_min %>
+      <%= form.number_field :end_min, max: 59, min: 0, placeholder: 'End Minutes', class: 'form-control' %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary mb-2' %>
   </div>
 <% end %>

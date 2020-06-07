@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       t.string :email, null: false, default: ""
       t.string :name, null: false, default: ""
+      t.string :encrypted_password
       t.string :uid
       t.string :avatar_url
       t.string :type
